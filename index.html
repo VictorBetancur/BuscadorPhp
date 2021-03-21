@@ -30,42 +30,34 @@
       <div class="input-field">
         <input placeholder="Usuario" id="user" type="text" class="validate">
       </div>
-         <div class="filtrosContenido">
-          <div class="tituloFiltros">
-            <h5>Realiza una búsqueda personalizada</h5>
-          </div>
-         <!--VIX 0106 -->
-             <div class="row">
-
-
-   <!--
-             <div class="filtroCiudad input-field">
-                   -->
-             <div class="filtroCiudad col s4">
-                  <label class="radio-label">Ciudad:</label>
-             <!--
-               <label for="selectCiudad">Ciudad:</label>
- -->
-             </div>
-
-             <div class="input-field col s8">
-               <select name="ciudad" id="selectCiudad">
-   <!--
-                 <option value="" selected>Elige una ciudad</option>
-                  -->
-                 <option value="Miami">Miami</option>
-               </select>
-             </div>
-
+       <div class="filtrosContenido">
+         <div class="tituloFiltros">
+           <h5>Realiza una búsqueda personalizada</h5>
          </div>
-         <!--VIX 0106 -->
 
-
-
+        <div class="filtroCiudad input-field">
+          <label for="selectCiudad">Ciudad:</label>
+                 <select name="ciudad" id="selectCiudad">
+                 <option value="" selected>Elige una ciudad</option>
+                 <!--VIX 0106 -->
+                 <option value="New York">New York</option>
+                 <option value="Orlando">Orlando</option>
+                 <option value="LosAngeles">Los Angeles</option>
+                 <option value="Houston">Houston</option>
+                 <option value="Washington">Washington</option>
+                 <option value="Miami">Miami</option>
+                 <!--VIX 0106 -->
+               </select>
+          </div>
           <div class="filtroTipo input-field">
             <label for="selecTipo">Tipo:</label><br>
             <select name="tipo" id="selectTipo">
               <option value="" selected>Elige un tipo</option>
+               <!--VIX 0106 -->
+              <option value="Casa" selected>Casa</option>
+              <option value="Casa de Campo" selected>Casa de campo</option>
+              <option value="Apartamento" selected>Apartamento</option>
+              <!--VIX 0106 -->
             </select>
           </div>
           <div class="filtroPrecio">
@@ -75,9 +67,8 @@
           <div class="botonField">
             <input type="submit" class="btn white" value="Buscar" id="submitButton">
           </div>
-        </div>
 
-
+  </div>
       </form>
     </div>
 
@@ -86,36 +77,15 @@
         <h5>Resultados de la búsqueda:</h5>
         <div class="divider"></div>
         <button type="button" name="todos" class="btn-flat waves-effect" id="mostrarTodos">Mostrar Todos</button>
-         <!--VIX 0106 -->
-   <!--
-
-
-<div class="col m8 lista">
-   <div class="card horizontal">
-            <div class="card-stacked">
-            </div>
-   </div>
-   </div>
-      -->
-         <!--VIX 0106 -->
          <!--VIX 0108 -->
-
-
-    <div class="itemMostrado ">
-         <div class="card-content">
-         </div>
-         <div class="card-action right-align">
+        <div class="itemMostrado ">
+          <div class="card-content">
+          </div>
+          <div class="card-action right-align">
                <a href="#">Ver más</a>
-         </div>
-
-    </div>
-
-
+          </div>
+       </div>
         <!--VIX 0108 -->
-
-
-
-
     </div>
   </div>
 

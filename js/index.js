@@ -4,7 +4,7 @@
 $(document).ready(function() {
   alert("paso0");
   cargarDatos();
-//  $('select').material_select();
+  $('select').material_select();
 
 //  $('.formulario').submit(mostrarSubmit);
 
@@ -69,7 +69,6 @@ form_data.append('idcasa', idcasa);
 function setTitles(direccion, ciudad, telefono, codigoPostal, tipo, precio){
 
   $('.card-content').append('<ul><img src="./img/home.jpg"></ul>')
-//  $('.itemMostrado').append('<br>'+ direccion + '</br>')
   $('.card-content').append('<b> Direccion: '+ direccion + '</b><p></p>')
   $('.card-content').append('<b>Ciudad: '+ ciudad    + '</b><p></p>')
   $('.card-content').append('<b>Telefono: '+ telefono  + '</b><p></p>')
@@ -108,22 +107,10 @@ function setTitles(direccion, ciudad, telefono, codigoPostal, tipo, precio){
 
 //vix 0003
 
-
-
-
-
-
-
-
-
-
-
-
-
 /*
   Creación de una función personalizada para jQuery que detecta cuando se detiene el scroll en la página
 */
-/*
+
 $.fn.scrollEnd = function(callback, timeout) {
   $(this).scroll(function(){
     var $this = $(this);
@@ -133,11 +120,11 @@ $.fn.scrollEnd = function(callback, timeout) {
     $this.data('scrollTimeout', setTimeout(callback,timeout));
   });
 };
-*/
+
 /*
   Función que inicializa el elemento Slider
 */
-/*
+
 function inicializarSlider(){
   $("#rangoPrecio").ionRangeSlider({
     type: "double",
@@ -149,7 +136,7 @@ function inicializarSlider(){
     prefix: "$"
   });
 }
-*/
+
 /*
   Función que reproduce el video de fondo al hacer scroll, y deteiene la reproducción al detener el scroll
 */
@@ -174,5 +161,5 @@ function playVideoOnScroll(){
     }, 10)
 }
 */
-//inicializarSlider();
+inicializarSlider();
 //playVideoOnScroll();
