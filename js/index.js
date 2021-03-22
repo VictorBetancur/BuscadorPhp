@@ -34,6 +34,7 @@ $('#formulario').submit(function(event){
   event.preventDefault();
   //alert("paso0");
 //    window.location.href = 'index.html';
+// window.location.reload()
   alert("paso1");
   cargarDatos(2);
 });
@@ -43,6 +44,8 @@ $('#formulario').submit(function(event){
 function cargarDatos(opcionVix){
 for (var i=1;i<=100;i++){
 var rangoPrecioVix =$('#rangoPrecio').val();
+var rangosSeparados=rangoPrecioVix.split(";");
+var rangosArchivo;
 var selectCiudadVix =$('#selectCiudad').val();
 var selecttipoVix =$('#selectTipo').val();
 var idcasa = i;
@@ -65,22 +68,36 @@ form_data.append('selecttipoVix', selecttipoVix);
     success: function(response){
       if (response.msj == "true") {
          //V1X SE COMENTA LA ALETA PARA FACILTAR EL CICLO
+         rangosArchivo=response.Precio.split("$")
          if (1 == opcionVix) {
             setTitles(response.Direccion, response.Ciudad, response.Telefono, response.Codigo_Postal, response.Tipo,response.Precio);
+            //alert("resuesta "+rangoPrecioVix + " vix " + rangosArchivo[1] + " " + rangosSeparados[1] );
+            //alert("resuesta " + rangosSeparados[0] +" menor "+ rangosArchivo[1] + "  -  " + rangosSeparados[1] +" mayor "+ rangosArchivo[1] );
          }
-         // SELECCION POR CIUDAD, TIPO
-         else if (response.Ciudad == selectCiudadVix & response.Tipo == selecttipoVix) {
-            //     alert("resuesta "+selectCiudadVix +" " +selecttipoVix +" "+rangoPrecioVix);
-                 setTitles(response.Direccion, response.Ciudad, response.Telefono, response.Codigo_Postal, response.Tipo,response.Precio);
-         }
-         else if (response.Ciudad == selectCiudadVix & "" == selecttipoVix) {
-                 setTitles(response.Direccion, response.Ciudad, response.Telefono, response.Codigo_Postal, response.Tipo,response.Precio);
-         }
-         else if ("" == selectCiudadVix & response.Tipo == selecttipoVix)  {
-                 setTitles(response.Direccion, response.Ciudad, response.Telefono, response.Codigo_Postal, response.Tipo,response.Precio);
-         }
-         else if ("" == selectCiudadVix & "" == selecttipoVix)  {
-                 setTitles(response.Direccion, response.Ciudad, response.Telefono, response.Codigo_Postal, response.Tipo,response.Precio);
+         else{
+               // SELECCION POR CIUDAD, TIPO
+             if (response.Ciudad == selectCiudadVix & response.Tipo == selecttipoVix) {
+              //   alert("resuesta "+selectCiudadVix +" " +selecttipoVix +" "+rangoPrecioVix);
+               if (rangosArchivo[1] >= rangosSeparados[0] & rangosArchivo[1] <= rangosSeparados[1]  ) {
+                  setTitles(response.Direccion, response.Ciudad, response.Telefono, response.Codigo_Postal, response.Tipo,response.Precio);
+               }
+             }
+             else if (response.Ciudad == selectCiudadVix & "" == selecttipoVix) {
+               if (rangosArchivo[1] >= rangosSeparados[0] & rangosArchivo[1] <= rangosSeparados[1]  ) {
+                  setTitles(response.Direccion, response.Ciudad, response.Telefono, response.Codigo_Postal, response.Tipo,response.Precio);
+               }
+             }
+             else if ("" == selectCiudadVix & response.Tipo == selecttipoVix)  {
+               if (rangosArchivo[1] >= rangosSeparados[0] & rangosArchivo[1] <= rangosSeparados[1]  ) {
+                  setTitles(response.Direccion, response.Ciudad, response.Telefono, response.Codigo_Postal, response.Tipo,response.Precio);
+               }
+             }
+             else if ("" == selectCiudadVix & "" == selecttipoVix)  {
+               //setTitles(response.Direccion, response.Ciudad, response.Telefono, response.Codigo_Postal, response.Tipo,response.Precio);
+               if (rangosArchivo[1] >= rangosSeparados[0] & rangosArchivo[1] <= rangosSeparados[1]  ) {
+                  setTitles(response.Direccion, response.Ciudad, response.Telefono, response.Codigo_Postal, response.Tipo,response.Precio);
+               }
+             }
          }
       }
       else {
