@@ -35,7 +35,7 @@ $('#formulario').submit(function(event){
   //alert("paso0");
 //    window.location.href = 'index.html';
 // window.location.reload()
-  alert("paso1");
+//  alert("paso1");
   cargarDatos(2);
 });
 // FUNCION QUE SE ACTIVA CON EL BOTON SUBMIT O BUSCAR
