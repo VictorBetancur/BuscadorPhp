@@ -1,40 +1,58 @@
 //VIX 0001
-// AL CARGAR LA PAGINA LLAMA  LA FUNCION
-
-$(document).ready(function() {
-  alert("paso0");
-  cargarDatos();
-  $('select').material_select();
-
-//  $('.formulario').submit(mostrarSubmit);
-
- });
-
+//FUNCION PARA DETECTAR EL ENTER DESPUES DE ESCRIBIR EN USER
 /*
-  function mostrarSubmit(event){
-      event.preventDefault();
-        alert("paso1");
-      cargarDatos();
+var inputUser =$('#user')
+inputUser.on('keypress',function(e){
+  if(e.which===13){
+    //  alert("seguir1.1");
+      //cargarMasComentarios();
+      //alert("seguir1.2");
   }
-*/
-//VIX 0001
-/*
-$('#formulario').submit(function(event){
-    event.preventDefault();
-  cargarDatos();
-}
-*/
+ })
+ */
+//FUNCION PARA DETECTAR EL ENTER DESPUES DE ESCRIBIR EN USER
 
+// FUNCION QUE SE ACTIVA AL CARGAR LA PAGINA
+$(document).ready(function() {
+  //alert("paso0");
+  //cargarDatos();
+  $('select').material_select();
+ });
+// FUNCION QUE SE ACTIVA AL CARGAR LA PAGINA
+
+//VIX 0001
+// FUNCION QUE SE ACTIVA CON EL BOTON MOSTRAR TODOS
+var inputMostrar =$('#mostrarTodos')
+inputMostrar.on('click',function(e){
+//      alert("seguir1.1");
+  cargarDatos(1);
+ })
+// FUNCION QUE SE ACTIVA CON EL BOTON MOSTRAR TODOS
+
+// FUNCION QUE SE ACTIVA CON EL BOTON SUBMIT O BUSCAR
+$('#formulario').submit(function(event){
+  event.preventDefault();
+  //alert("paso0");
+//    window.location.href = 'index.html';
+  alert("paso1");
+  cargarDatos(2);
+});
+// FUNCION QUE SE ACTIVA CON EL BOTON SUBMIT O BUSCAR
 
 //VIX 0002
-function cargarDatos(){
-for (var i=1;i<=3;i++){
+function cargarDatos(opcionVix){
+for (var i=1;i<=100;i++){
+var rangoPrecioVix =$('#rangoPrecio').val();
+var selectCiudadVix =$('#selectCiudad').val();
+var selecttipoVix =$('#selectTipo').val();
 var idcasa = i;
-//var username = i;
-//var password = i;
 var form_data = new FormData();
+form_data.append('opcionVix', opcionVix);
 form_data.append('idcasa', idcasa);
-//form_data.append('password', password);
+form_data.append('rangoPrecioVix', rangoPrecioVix);
+form_data.append('selectCiudadVix', selectCiudadVix);
+form_data.append('selecttipoVix', selecttipoVix);
+
 
   $.ajax({
     url: "DatosIniciales.php",
@@ -46,28 +64,43 @@ form_data.append('idcasa', idcasa);
     type: 'post',
     success: function(response){
       if (response.msj == "true") {
-        //V1X SE COMENTA LA ALETA PARA FACILTAR EL CICLO
-        //alert("paso3 "+response.Direccion);
-        setTitles(response.Direccion, response.Ciudad, response.Telefono, response.Codigo_Postal, response.Tipo,response.Precio);
-      }else {
-
-       alert("paso1");
-      //  window.location.href = 'login.html';
+         //V1X SE COMENTA LA ALETA PARA FACILTAR EL CICLO
+         if (1 == opcionVix) {
+            setTitles(response.Direccion, response.Ciudad, response.Telefono, response.Codigo_Postal, response.Tipo,response.Precio);
+         }
+         // SELECCION POR CIUDAD, TIPO
+         else if (response.Ciudad == selectCiudadVix & response.Tipo == selecttipoVix) {
+            //     alert("resuesta "+selectCiudadVix +" " +selecttipoVix +" "+rangoPrecioVix);
+                 setTitles(response.Direccion, response.Ciudad, response.Telefono, response.Codigo_Postal, response.Tipo,response.Precio);
+         }
+         else if (response.Ciudad == selectCiudadVix & "" == selecttipoVix) {
+                 setTitles(response.Direccion, response.Ciudad, response.Telefono, response.Codigo_Postal, response.Tipo,response.Precio);
+         }
+         else if ("" == selectCiudadVix & response.Tipo == selecttipoVix)  {
+                 setTitles(response.Direccion, response.Ciudad, response.Telefono, response.Codigo_Postal, response.Tipo,response.Precio);
+         }
+         else if ("" == selectCiudadVix & "" == selecttipoVix)  {
+                 setTitles(response.Direccion, response.Ciudad, response.Telefono, response.Codigo_Postal, response.Tipo,response.Precio);
+         }
       }
-
-    },
-    error: function(){
-      alert("paso2");
-    //  window.location.href = 'login.html';
+      else {
+          // SELECCION POR CIUDAD
+          alert("ERROR EN RESPUESTA 1");
+          //  window.location.href = 'login.html';
+      }
+     },
+     error: function(){
+     alert("ERROR EN RESPUESTA 2");
+     //  window.location.href = 'login.html';
     }
   })
+ }
 }
-}
+
 
 //VIX 0002
 //vix 0003
 function setTitles(direccion, ciudad, telefono, codigoPostal, tipo, precio){
-
   $('.card-content').append('<ul><img src="./img/home.jpg"></ul>')
   $('.card-content').append('<b> Direccion: '+ direccion + '</b><p></p>')
   $('.card-content').append('<b>Ciudad: '+ ciudad    + '</b><p></p>')
@@ -75,7 +108,6 @@ function setTitles(direccion, ciudad, telefono, codigoPostal, tipo, precio){
   $('.card-content').append('<b>Código postal: '+ codigoPostal  + '</b><p></p>')
   $('.card-content').append('<b>Tipo: '+ tipo  + '</b><p></p>')
   $('.card-content').append('<b>Precio: '+ precio  + '</b><p></p>')
-
 
 /*
   if (descripcion == "") {
